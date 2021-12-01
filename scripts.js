@@ -39,7 +39,7 @@ character = {
     y: 0,
     height: 50,
     width: 50,
-    color: "#4634eb",
+    color: "#000",
     gravity: 1.6,
     speed: 0,
     jumpStrenght: 25,
@@ -150,7 +150,7 @@ function click (event) {
 }
 
 function jump(event) {
-    if (event.code === 'Space') {
+    if (event.keyCode == 32) {
         character.jump();
     } 
 }
@@ -210,12 +210,20 @@ function refresh() {
 }
 
 function draw() {
-    ctx.fillStyle = "#c97328"
+    ctx.fillStyle = "rgb(150,150,200)"
     ctx.fillRect(0, 0, width, height);
 
     ctx.fillStyle = "#000";
+    ctx.font = "25px VT323"
+    ctx.fillText('Your Record: ' + record, 430, 68);
+
+    if(record == null) {
+        record = 0;
+    }
+
+    ctx.fillStyle = "#000";
     ctx.font = "50px VT323"
-    ctx.fillText(character.score, 30, 68);
+    ctx.fillText(character.score, 30, 68);    
 
     if (actualState == states.play) {
         ctx.fillStyle = "green";
